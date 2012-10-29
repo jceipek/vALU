@@ -1,4 +1,3 @@
-
 module mux2by1(out, s, ins);
   output out;
   input s;
