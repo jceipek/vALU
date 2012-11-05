@@ -14,6 +14,7 @@ input control ctl1 is 1 if right shift, 0 if left shift
 worst-case delay = 7 * delay of MUX32LAYRES2BY1 = 7 * 50 = 350 */
 
 `include "gateConstants.v"
+`include "gateConstants.v"
 `include "MUX32LAYERS2BY1.v"
 
 module Shifter(out, A, B, ctl0, ctl1);
