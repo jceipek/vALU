@@ -5,6 +5,7 @@ Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
 `include "testConstants.v"
+`include "Shifter.v"
 
 
 /* module testShifter.v
@@ -53,7 +54,7 @@ def rlShift(a,b):
                 a[j+1] = a[j]
             a[j] = "0"
     return a
-    
+
 
 for i in range(3):
     theShift = None
