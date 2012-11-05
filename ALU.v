@@ -25,6 +25,6 @@ module ALU(out, Zero, Overflow, Cout, S, A, B);
   
   AdderSubtractor addBlock(SumDiffSLT, Zero, Overflow, Cout, A, B, S[0], S[1]);
   
-  MegaMuxOfDestiny finalMux(out, S, SumDiffSLT, SumDiffSLT, SumDiffSLT, XorOut, shiftOut, shiftOut, shiftOut);
+  MegaMuxOfDestiny finalMux(out, S, SumDiffSLT, SumDiffSLT, XorOut, SumDiffSLT, shiftOut, shiftOut, shiftOut);
     
 endmodule
