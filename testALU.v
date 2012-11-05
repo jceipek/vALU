@@ -7,20 +7,20 @@ Computer Architecture, Olin College Fall 2012 */
 `include "testConstants.v"
 
 module testALU();
-
-ALU myALU(out, Zero, Overflow, Cout, S, A, B);
   wire [31:0] out;
   wire Zero, Overflow, Cout;
   
   reg [2:0] S;
   reg [31:0] A, B;
+ALU myALU(out, Zero, Overflow, Cout, S, A, B);
+
   
   initial begin
     
-    A = 00000000000000000000000000000000;
-    B = 00000000000000000000000000000000;
+    A = 32'b00000000000000000000000000000000;
+    B = 32'b00000000000000000000000000000001;
     S = 000;
-    if (out !== 00000000000000000000000000000000) begin
+    if (out !== 0000000000000000000000000000001) begin
       `FAIL;
     end
     
