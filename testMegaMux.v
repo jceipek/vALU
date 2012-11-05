@@ -34,60 +34,59 @@ module testMegaMux();
     /* # PYTHON GENERATOR
     for s in range(8):
       print "S = '%s;" % bin(s)[1:]
+      print "`CLK;"
       print "if (O !== I%i) begin" % s
       print "  `FAIL;"
       print "end"
-      print "`CLK;"
       print
     */
-
     S = 'b0;
+    `CLK;
     if (O !== I0) begin
       `FAIL;
     end
-    `CLK;
 
     S = 'b1;
+    `CLK;
     if (O !== I1) begin
       `FAIL;
     end
-    `CLK;
 
     S = 'b10;
+    `CLK;
     if (O !== I2) begin
       `FAIL;
     end
-    `CLK;
 
     S = 'b11;
+    `CLK;
     if (O !== I3) begin
       `FAIL;
     end
-    `CLK;
 
     S = 'b100;
+    `CLK;
     if (O !== I4) begin
       `FAIL;
     end
-    `CLK;
 
     S = 'b101;
+    `CLK;
     if (O !== I5) begin
       `FAIL;
     end
-    `CLK;
 
     S = 'b110;
+    `CLK;
     if (O !== I6) begin
       `FAIL;
     end
-    `CLK;
 
     S = 'b111;
+    `CLK;
     if (O !== I7) begin
       `FAIL;
     end
-    `CLK;
   end
 
 endmodule
