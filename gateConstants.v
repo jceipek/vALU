@@ -11,6 +11,9 @@ Computer Architecture, Olin College Fall 2012 */
 `define AND and #20
 `define OR or #20
 
+// 32-input NOR gate
+`define NOR32 nor #320
+
 // More complex delays
 
 // Longest path: 1 NOT, 1 2-input AND, 1 2-input OR
