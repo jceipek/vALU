@@ -11,7 +11,7 @@ input B is a 32-bit number, but we only care about the lowest
 input control ctl0 is 1 if logical shift, 0 if arithmetic shift
 input control ctl1 is 1 if right shift, 0 if left shift
 
-worst-case delay = 7 * delay of MUX32LAYRES2BY1 = 7 * 50 = 350 */
+worst-case delay = 7 * delay of mux32layers2by1 = 7 * 50 = 350 */
 
 `include "gateConstants.v"
 `include "mux32layers2by1.v"
