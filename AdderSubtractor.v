@@ -1,9 +1,10 @@
-include "TestConstants.v"
-
 /* AdderSubtractor.v
 part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
+
+`include "gateConstants.v"
+
 
 /* module AdderSubtractor
 outputs out as a 32-bit result that is either the addition of A and B,
@@ -103,12 +104,34 @@ module add32(out, Cout, A, B, Cin);
   add1 add1_1(out[1], Ctemp[1], A[1], B[1], Ctemp[0]);
   add1 add1_2(out[2], Ctemp[2], A[2], B[2], Ctemp[1]);
   add1 add1_3(out[3], Ctemp[3], A[3], B[3], Ctemp[2]);
-  /*
-  .
-  .
-  .
-  */
-
+  add1 add1_4(out[4], Ctemp[4], A[4], B[4], Ctemp[3]);
+  add1 add1_5(out[5], Ctemp[5], A[5], B[5], Ctemp[4]);
+  add1 add1_6(out[6], Ctemp[6], A[6], B[6], Ctemp[5]);
+  add1 add1_7(out[7], Ctemp[7], A[7], B[7], Ctemp[6]);
+  add1 add1_8(out[8], Ctemp[8], A[8], B[8], Ctemp[7]);
+  add1 add1_9(out[9], Ctemp[9], A[9], B[9], Ctemp[8]);
+  add1 add1_10(out[10], Ctemp[10], A[10], B[10], Ctemp[9]);
+  add1 add1_11(out[11], Ctemp[11], A[11], B[11], Ctemp[10]);
+  add1 add1_12(out[12], Ctemp[12], A[12], B[12], Ctemp[11]);
+  add1 add1_13(out[13], Ctemp[13], A[13], B[13], Ctemp[12]);
+  add1 add1_14(out[14], Ctemp[14], A[14], B[14], Ctemp[13]);
+  add1 add1_15(out[15], Ctemp[15], A[15], B[15], Ctemp[14]);
+  add1 add1_16(out[16], Ctemp[16], A[16], B[16], Ctemp[15]);
+  add1 add1_17(out[17], Ctemp[17], A[17], B[17], Ctemp[16]);
+  add1 add1_18(out[18], Ctemp[18], A[18], B[18], Ctemp[17]);
+  add1 add1_19(out[19], Ctemp[19], A[19], B[19], Ctemp[18]);
+  add1 add1_20(out[20], Ctemp[20], A[20], B[20], Ctemp[19]);
+  add1 add1_21(out[21], Ctemp[21], A[21], B[21], Ctemp[20]);
+  add1 add1_22(out[22], Ctemp[22], A[22], B[22], Ctemp[21]);
+  add1 add1_23(out[23], Ctemp[23], A[23], B[23], Ctemp[22]);
+  add1 add1_24(out[24], Ctemp[24], A[24], B[24], Ctemp[23]);
+  add1 add1_25(out[25], Ctemp[25], A[25], B[25], Ctemp[24]);
+  add1 add1_26(out[26], Ctemp[26], A[26], B[26], Ctemp[25]);
+  add1 add1_27(out[27], Ctemp[27], A[27], B[27], Ctemp[26]);
+  add1 add1_28(out[28], Ctemp[28], A[28], B[28], Ctemp[27]);
+  add1 add1_29(out[29], Ctemp[29], A[29], B[29], Ctemp[28]);
+  add1 add1_30(out[30], Ctemp[30], A[30], B[30], Ctemp[29]);
+  add1 add1_31(out[31], Ctemp[31], A[31], B[31], Ctemp[30]);
 endmodule
   
 module add1(out, Cout, A, B, Cin);
