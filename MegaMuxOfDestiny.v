@@ -4,14 +4,14 @@ Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
 `include "gateConstants.v"
-`include "mux5by1.v"
+`include "mux8by1.v"
 
 module MegaMuxOfDestiny(out, ctl, I7, I6, I5, I4, I3, I2, I1, I0);
   output [31:0] out;
   input [2:0] ctl;
   input [31:0] I0, I1, I2, I3, I4, I5, I6, I7;
 
-', '.join(["I%i"%j for j in range(8)])
+//', '.join(["I%i"%j for j in range(8)])
 
   /* # PYTHON GENERATOR
   for i in range(32):

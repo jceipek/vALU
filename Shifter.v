@@ -4,14 +4,15 @@ Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
 `include "mux2by1.v"
+`include "gateConstants.v"
 
 /* module Shifter
 outputs out as a 32-bit result after shifting
 input A is a 32-bit entry that gets shifted
 input B is a 32-bit number, but we only care about the lowest
   5 bits and it determines the number of shifts we do
-input control ctl0 is 1 if logical shift 0 if arithmetic shift
-input control ctl1 is 1 if right shift 0 if left shift */
+input control ctl0 is 1 if logical shift, 0 if arithmetic shift
+input control ctl1 is 1 if right shift, 0 if left shift */
 
 module Shifter(out, A, B, ctl0, ctl1);
   output [31:0] out;
@@ -38,6 +39,9 @@ module Shifter(out, A, B, ctl0, ctl1);
 
   `MUX2BY1 muxPre0(Apre0ext, ctl0, {low, A[31]});
   // mux32layers2by1 to shift Apre0 by 1 based on B[0] -> Apre1
+  A = 00010001000000100001
+  B = 00000000000000000001
+  
 
   `MUX2BY1 muxPre1a(Apre1ext[0], ctl0, {low, A[31]});
   `MUX2BY1 muxPre1b(Apre1ext[1], ctl0, {low, A[31]});
