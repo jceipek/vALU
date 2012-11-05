@@ -9,9 +9,8 @@ Computer Architecture, Olin College Fall 2012 */
 each value of S selects the appropriate I */
 
 module testMegaMux();
-  reg clk;
   reg [31:0] I0, I1, I2, I3, I4, I5, I6, I7;
-  reg [3:0] S;
+  reg [2:0] S;
   wire [31:0] O;
 
   MegaMuxOfDestiny mega01(O, S, I0, I1, I2, I3, I4, I5, I6, I7);
