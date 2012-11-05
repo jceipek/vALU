@@ -34,8 +34,7 @@ module AdderSubtractor(out, Zero, Overflow, Cout, A, B, ctl0, ctl1);
   
   // mux between ABadded or the MSB of ABadded depending on ctl1: (0) ADD/SUB or (1) SLT
   assign ABaddedMSB = 0; // at start of program, set these wires to 0 so that no weirdness happens.
-  assign ABaddedMSB[0] = ABadded[31];
-  mux32layers2by1 muxABaddedMSB(out, ctl1, ABadded, ABaddedMSB);
+  mux32layers2by1 muxABaddedMSB(out, ctl1, ABadded, {ABaddedMSB[31:1], ABadded[31]});
     
 endmodule
 

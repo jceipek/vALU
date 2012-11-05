@@ -776,19 +776,5 @@ module testAdderSubtractor();
       `FAIL;
     end
 
-    // worst case
-    ctl0 = 0;
-    ctl1 = 0;
-    A = 'b11111111111111111111111111111111;
-    B = 'b00000000000000000000000000000000;
-    `CLK
-    if (Overflow !== 'b1) begin
-      `FAIL;
-    end
-
-    if (out !== 'b00000000000000000000000000000000) begin
-      `FAIL;
-    end
-
   end
 endmodule
