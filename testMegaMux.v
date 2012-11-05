@@ -4,7 +4,8 @@ Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
 `include "testConstants.v"
-
+//`define FAIL $display("FAIL! time %d", $time)
+//`define CLK #500
 /* Sets each input I to be a unique value and tests to see if
 each value of S selects the appropriate I */
 
