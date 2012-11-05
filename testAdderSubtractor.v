@@ -6,7 +6,6 @@ Computer Architecture, Olin College Fall 2012 */
 `include "testConstants.v"
 `include "AdderSubtractor.v"
 
-
 /*
     Test every combination of adding, subtracting and less-than comparing A and B for:
         all 0s
