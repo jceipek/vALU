@@ -1,4 +1,4 @@
-/* MUX32LAYERS2BY1.v
+/* mux32layersby1.v
 part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
@@ -6,7 +6,7 @@ Computer Architecture, Olin College Fall 2012 */
 `include "gateConstants.v"
 `include "mux2by1.v"
 
-module MUX32LAYERS2BY1(out, ctl, I1, I0);
+module mux32layersby1(out, ctl, I1, I0);
   output [31:0] out;
   input ctl;
   input [31:0] I0, I1;
