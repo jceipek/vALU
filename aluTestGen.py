@@ -1,4 +1,10 @@
-from bitstring import BitArray
+from bitstring import BitArray # Need bitstring. Get it from code.google.com/p/python-bitstring
+
+# These are the numbers that are tested. a and b nested-loop through them.
+testCases = [BitArray(bin=('0'*32)), BitArray(bin=('1'*32)), BitArray(bin=('01'*16)), BitArray(bin=('10'*16)),  BitArray(bin=(('0'*31)+'1'))]
+
+
+# All of the following functions need to be defined fully
 
 def add(a,b):
 	out = None
@@ -18,6 +24,7 @@ def add(a,b):
 		overflow = BitArray(bin=(('0'*31)+'1'))
 
 	return out, zero, overflow, carryout
+
 
 def sub(a,b):
 	out = None
@@ -88,6 +95,8 @@ def mult(a,b):
 	carryout = None
 	return out, zero, overflow, carryout
 
+# End functions. No changes should need to be made beyond this point.
+
 sENUM = {
 	0: (add  , " + "),
 	1: (sub  , " - "),
@@ -104,7 +113,7 @@ def genCaseFor(a, b):
 		if not sENUM[s][1] == " MUL ":
 			op, comment = sENUM[s]
 			print("// %i%s%i" % (a.int, comment, b.int))
-			print "S = 'b%s;" % BitArray('uint:3=%s'%s).bin
+			print "S = 'b%s;" % BitArray('uint:3=%s'%s).bin #need bitstring
 			print "A = 'b%s;" % a.bin
 			print "B = 'b%s;" % b.bin
 			print "`CLK;"
@@ -126,7 +135,6 @@ def genCaseFor(a, b):
 				print "  `FAIL;"
 				print "end\n"
 
-testCases = [BitArray(bin=('0'*32)), BitArray(bin=('1'*32)), BitArray(bin=('01'*16)), BitArray(bin=('10'*16)),  BitArray(bin=(('0'*31)+'1'))]
 for a in testCases:
 	for b in testCases:
 		genCaseFor(a,b)
