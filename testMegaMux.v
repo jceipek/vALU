@@ -1,5 +1,9 @@
+/* testMegaMux.v
+part of project vALU by FluffyTheGatekeeper
+Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
+Computer Architecture, Olin College Fall 2012 */
 
-module testMux();
+module testMegaMux();
   reg clk;
   parameter period = 500; // 2*period = length of clock
   // Make the clock LONG to test
