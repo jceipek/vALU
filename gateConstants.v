@@ -17,10 +17,11 @@ Computer Architecture, Olin College Fall 2012 */
 // More complex delays
 
 // Longest path: 1 NOT, 1 2-input AND, 1 2-input OR
-`define MUX2BY1 mux2by1 #(50)
-// Longest path: 3 NOTs, 1 4-input AND, 1 5-input OR
-`define MUX5BY1 mux5by1 #(120)
-// Longest path: 3 NOTs, 1 4-input AND, 1 8-input OR
-`define MUX8BY1 mux8by1 #(150)
+`define MUX2BY1_DELAY 50
 
+// Longest path: 3 NOTs, 1 4-input AND, 1 5-input OR
+`define MUX5BY1_DELAY 120
+
+// Longest path: 3 NOTs, 1 4-input AND, 1 8-input OR
 `define MUX8BY1_DELAY 150
+
