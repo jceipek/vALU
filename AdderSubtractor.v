@@ -30,7 +30,7 @@ module AdderSubtractor(out, Zero, Overflow, Cout, A, B, ctl0, ctl1);
   mux32layers2by1 muxBnotB(Bmuxed, ctl0, B, notB);
   
   // add A with Bmuxed and a carry of ctl0
-  add32 add32_0(ABadded, Cout, A, Bmuxed, ctl0);
+  add32 add32_0(ABadded, Zero, Overflow, Cout, A, Bmuxed, ctl0);
   
   // mux between ABadded or the MSB of ABadded depending on ctl1: (0) ADD/SUB or (1) SLT
   assign ABaddedMSB[0] = ABadded[31];
@@ -91,13 +91,13 @@ module not32(out, in);
   
 endmodule
 
-module add32(out, Cout, A, B, Cin);
+module add32(out, Zero, Overflow, Cout, A, B, Cin);
   output [31:0] out;
-  output Cout;
+  output Zero, Overflow, Cout;
   input [31:0] A, B;
   input Cin;
   
-  wire [31:0] Ctemp;
+  wire [30:0] Ctemp;
   
   // 32-bit full adder
   add1 add1_0(out[0], Ctemp[0], A[0], B[0], Cin);
@@ -131,7 +131,14 @@ module add32(out, Cout, A, B, Cin);
   add1 add1_28(out[28], Ctemp[28], A[28], B[28], Ctemp[27]);
   add1 add1_29(out[29], Ctemp[29], A[29], B[29], Ctemp[28]);
   add1 add1_30(out[30], Ctemp[30], A[30], B[30], Ctemp[29]);
-  add1 add1_31(out[31], Ctemp[31], A[31], B[31], Ctemp[30]);
+  add1 add1_31(out[31], Cout, A[31], B[31], Ctemp[30]);
+  
+  `XOR xor_overflow (Overflow, Cout, Ctemp[30]);
+  `NOR32 nor32_zero(Zero, out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7],
+                          out[8], out[9], out[10], out[11], out[12], out[13], out[14], out[15],
+                          out[16], out[17], out[18], out[19], out[20], out[21], out[22], out[23],
+                          out[24], out[25], out[26], out[27], out[28], out[29], out[30], out[31]);
+  
 endmodule
   
 module add1(out, Cout, A, B, Cin);
