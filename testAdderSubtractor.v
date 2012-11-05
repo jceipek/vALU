@@ -608,7 +608,7 @@ module testAdderSubtractor();
     A = 'b01010101010101010101010101010101;
     B = 'b10101010101010101010101010101010;
     `CLK
-    if (Overflow !== 'b0) begin
+    if (Overflow !== 'b1) begin
       `FAIL;
     end
 
@@ -730,7 +730,7 @@ module testAdderSubtractor();
     A = 'b10101010101010101010101010101010;
     B = 'b01010101010101010101010101010101;
     `CLK
-    if (Overflow !== 'b0) begin
+    if (Overflow !== 'b1) begin
       `FAIL;
     end
 

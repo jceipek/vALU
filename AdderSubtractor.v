@@ -25,6 +25,8 @@ module AdderSubtractor(out, Zero, Overflow, Cout, A, B, ctl0, ctl1);
   wire [31:0] ABadded;
   wire [31:0] ABaddedMSB;
   
+  wire NOverflow, LT, hackLT, cheatingLT, notBMSB;
+  
   // flip B and mux between B or notB depending on ctl0: (0) ADD or (1) SUB/SLT
   not32 not32_0(notB, B);
   mux32layers2by1 muxBnotB(Bmuxed, ctl0, B, notB);
@@ -34,7 +36,17 @@ module AdderSubtractor(out, Zero, Overflow, Cout, A, B, ctl0, ctl1);
   
   // mux between ABadded or the MSB of ABadded depending on ctl1: (0) ADD/SUB or (1) SLT
   assign ABaddedMSB = 0; // at start of program, set these wires to 0 so that no weirdness happens.
+<<<<<<< HEAD
   mux32layers2by1 muxABaddedMSB(out, ctl1, ABadded, {ABaddedMSB[31:1], ABadded[31]});
+=======
+  // the SLT is not very well-designed - we spent more time making the Shifter better :(
+  not(NOverflow, Overflow);
+  and(LT, NOverflow, ABadded[31]);
+  not(notBSMB, B[31]);
+  and(hackLT, A[31], notBSMB);
+  or(cheatingLT, LT, hackLT);
+  mux32layers2by1 muxABaddedMSB(out, ctl1, ABadded, {ABaddedMSB[31:1], cheatingLT});
+>>>>>>> 74f773036c8641b7d359ac1988b5f1da566381b0
     
 endmodule
 
