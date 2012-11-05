@@ -5,6 +5,7 @@ Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
 `include "gateConstants.v"
+`include "mux32layers2by1.v"
 
 module test32layers2by1();
   reg clk;
