@@ -9,7 +9,7 @@ input A is a 32-bit entry that gets shifted
 input B is a 32-bit number, but we only care about the lowest
   5 bits and it determines the number of shifts we do
 input control ctl0 is 1 if logical shift, 0 if arithmetic shift
-input control ctl1 is 1 if right shift, 0 if left shift 
+input control ctl1 is 1 if right shift, 0 if left shift
 
 worst-case delay = 7 * delay of MUX32LAYRES2BY1 = 7 * 50 = 350 */
 
@@ -21,10 +21,10 @@ module Shifter(out, A, B, ctl0, ctl1);
   input [31:0] A, B;
   input ctl0;
   input ctl1;
-  
+
   wire [31:0] Aleftflipped;
   wire [31:0] Apreoutleftflipped;
-  
+
   wire [31:0] Apre0;
   wire [31:0] Apre1;
   wire [31:0] Apre2;
@@ -77,7 +77,7 @@ module Shifter(out, A, B, ctl0, ctl1);
   assign Aleftflipped[29] = A[2];
   assign Aleftflipped[30] = A[1];
   assign Aleftflipped[31] = A[0];
-  
+
   // MUX32LAYERS2BY1 to left/right flip A or not left/right flip A based on ctl1 -> Apre0
   MUX32LAYERS2BY1 muxInit(Apre0, ctl1, Aleftflipped, A);
 
@@ -166,8 +166,8 @@ module Shifter(out, A, B, ctl0, ctl1);
   assign Apreoutleftflipped[29] = Apreout[2];
   assign Apreoutleftflipped[30] = Apreout[1];
   assign Apreoutleftflipped[31] = Apreout[0];
-  
+
   // MUX32LAYERS2BY1 to left/right flip Apreout or not left/right flip Apreout based on ctl1 -> out
-  MUX32LAYERS2BY1 muxFinal(out, ctl1, Apre3, Apreoutleftflipped, Apreout);
+  MUX32LAYERS2BY1 muxFinal(out, ctl1, Apreoutleftflipped, Apreout);
 
 endmodule
