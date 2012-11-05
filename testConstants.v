@@ -4,5 +4,5 @@ Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
 `define FAIL $display("FAIL! time %d", $time)
-`define CLK #10
+`define CLK #500
 `define DELAY #50
