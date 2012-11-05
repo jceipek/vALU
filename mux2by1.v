@@ -9,5 +9,5 @@ module mux2by1(out, s, ins);
   output out;
   input s;
   input [1:0] ins;
-  assign #50 out = ins[s];
+  assign #MUX2BY1_DELAY out = ins[s];
 endmodule
