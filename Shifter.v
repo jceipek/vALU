@@ -8,8 +8,8 @@ outputs out as a 32-bit result after shifting
 input A is a 32-bit entry that gets shifted
 input B is a 32-bit number, but we only care about the lowest
   5 bits and it determines the number of shifts we do
-input control ctl0 is 1 if logical shift 0 if arithmetic shift
-input control ctl1 is 1 if right shift 0 if left shift */
+input control ctl0 is 1 if logical shift, 0 if arithmetic shift
+input control ctl1 is 1 if right shift, 0 if left shift */
 
 `include "gateConstants.v"
 `include "mux32layers2by1.v"
@@ -81,15 +81,18 @@ module Shifter(out, A, B, ctl0, ctl1);
   mux32layers2by1 muxInit(Apre0, ctl1, Aleftflipped, A);
 
   // FROM THIS POINT ON ALWAYS SHIFT RIGHT
+  // extra bits sign-extended (arithmetic shift) or not (logical shift)
   `MUX2BY1 muxPre0(Apre0ext, ctl0, {low, A[31]});
   // mux32layers2by1 to shift Apre0 by 1 based on B[0] -> Apre1
   mux32layers2by1 mux0(Apre1, B[0], Apre0, {Apre0ext, Apre0[31:1]});
 
+  // extra bits sign-extended (arithmetic shift) or not (logical shift)
   `MUX2BY1 muxPre1a(Apre1ext[0], ctl0, {low, A[31]});
   `MUX2BY1 muxPre1b(Apre1ext[1], ctl0, {low, A[31]});
   // mux32layers2by1 to shift Apre1 by 2 based on B[1] -> Apre2
   mux32layers2by1 mux1(Apre2, B[1], Apre1, {Apre1ext[1:0], Apre1[31:2]});
 
+  // extra bits sign-extended (arithmetic shift) or not (logical shift)
   `MUX2BY1 muxPre2a(Apre2ext[0], ctl0, {low, A[31]});
   `MUX2BY1 muxPre2b(Apre2ext[1], ctl0, {low, A[31]});
   `MUX2BY1 muxPre2c(Apre2ext[2], ctl0, {low, A[31]});
@@ -97,6 +100,7 @@ module Shifter(out, A, B, ctl0, ctl1);
   // mux32layers2by1 to shift Apre2 by 4 based on B[2] -> Apre3
   mux32layers2by1 mux2(Apre3, B[2], Apre2, {Apre2ext[3:0], Apre2[31:4]});
 
+  // extra bits sign-extended (arithmetic shift) or not (logical shift)
   `MUX2BY1 muxPre3a(Apre3ext[0], ctl0, {low, A[31]});
   `MUX2BY1 muxPre3b(Apre3ext[1], ctl0, {low, A[31]});
   `MUX2BY1 muxPre3c(Apre3ext[2], ctl0, {low, A[31]});
@@ -108,6 +112,7 @@ module Shifter(out, A, B, ctl0, ctl1);
   // mux32layers2by1 to shift Apre3 by 8 based on B[3] -> Apre4
   mux32layers2by1 mux3(Apre4, B[3], Apre3, {Apre3ext[7:0], Apre3[31:8]});
 
+  // extra bits sign-extended (arithmetic shift) or not (logical shift)
   `MUX2BY1 muxPre4a(Apre4ext[0], ctl0, {low, A[31]});
   `MUX2BY1 muxPre4b(Apre4ext[1], ctl0, {low, A[31]});
   `MUX2BY1 muxPre4c(Apre4ext[2], ctl0, {low, A[31]});
