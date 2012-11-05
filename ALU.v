@@ -1,31 +1,30 @@
+
 /* ALU.v
 part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
+`include "testConstants.v"
+`include "XOR_32.v"
 `include "AdderSubtractor.v"
 `include "XOR_32.v"
 `include "Shifter.v"
 `include "MegaMuxOfDestiny.v"
 
-module ALU(out, Zero, Overflow, Cout, A, B, Ctl);
+
+module ALU(out, Zero, Overflow, Cout, S, A, B);
   output [31:0] out;
   output Zero, Overflow, Cout;
+  
+  input [2:0] S;
   input [31:0] A, B;
-  input [2:0] Ctl;
   
-  wire [31:0] out_AS;
-  wire [31:0] out_XOR;
-  wire [31:0] out_Shift;
+  Shifter shiftBlock(shiftOut, A, B, S[0], S[1]);
   
-  // ADD SUB SLT
-  AdderSubtractor AdderSubtractor_0(out_AS, Zero, Overflow, Cout, A, B, Ctl[0], Ctl[1]);
-  // XOR
-  XOR_32 XOR_32_0(out_XOR, A, B);
-  // SLLV SRAV SRLV
-  Shifter Shifter_0(out_Shift, A, B, Ctl[0], Ctl[1]);
+  XOR_32 xorGate(XorOut, A, B);
   
-  // ADD SUB XOR SLT MUL SLLV SRAV SRLV
-  MegaMuxOfDestiny megamux(out, Ctl, out_AS, out_AS, out_XOR, out_AS, out, out_Shift, out_Shift, out_Shift);
+  AdderSubtractor addBlock(SumDiffSLT, Zero, Overflow, Cout, A, B, S[0], S[1]);
   
+  MegaMuxOfDestiny finalMux(out, S, SumDiffSLT, SumDiffSLT, SumDiffSLT, XorOut, shiftOut, shiftOut, shiftOut);
+    
 endmodule

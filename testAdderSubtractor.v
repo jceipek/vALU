@@ -3,7 +3,9 @@ part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
+`include "testConstants.v"
 `include "AdderSubtractor.v"
+
 
 /*
     Test every combination of adding, subtracting and less-than comparing A and B for:
@@ -13,13 +15,13 @@ Computer Architecture, Olin College Fall 2012 */
         alternating 10s
 */
 
-module testShifter();
+module testAdderSubtractor();
   wire [31:0] out;
   wire Zero, Overflow, Cout;
   reg [31:0] A, B;
   reg ctl0, ctl1;
 
-  Shifter AdderSubtractor(out, Zero, Overflow, Cout, A, B, ctl0, ctl1);
+  AdderSubtractor plusandminus(out, Zero, Overflow, Cout, A, B, ctl0, ctl1);
   initial begin
 
     /* PYTHON GENERATOR
@@ -777,4 +779,4 @@ module testShifter();
 
   end
 
-end
+endmodule
