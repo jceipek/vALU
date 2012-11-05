@@ -1,9 +1,9 @@
-include "TestConstants.v"
-
 /* XOR_32.v
 part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
+
+`include "gateConstants.v"
 
 /* Python generator
 
@@ -24,7 +24,7 @@ for i in range(31,-1,-1):
 module XOR_32(out, A, B);
   output [31:0] out;
   input [31:0] A, B;
-  
+
   `XOR xor_31 (out[31], A[31], B[31]);
   `XOR xor_30 (out[30], A[30], B[30]);
   `XOR xor_29 (out[29], A[29], B[29]);
@@ -57,5 +57,5 @@ module XOR_32(out, A, B);
   `XOR xor_2 (out[2], A[2], B[2]);
   `XOR xor_1 (out[1], A[1], B[1]);
   `XOR xor_0 (out[0], A[0], B[0]);
-  
+
 endmodule
