@@ -4,6 +4,8 @@ part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
+`include "gateConstants.v"
+
 module test32layers2by1();
   reg clk;
   parameter period = 500; // 2*period = length of clock

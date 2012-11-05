@@ -4,8 +4,10 @@ part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
+`include "gateConstants.v"
 `include "testConstants.v"
 `include "Shifter.v"
+
 
 
 /* module testShifter.v
