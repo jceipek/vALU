@@ -3,8 +3,8 @@ part of project vALU by FluffyTheGatekeeper
 Julian Ceipek, Yuxin Guan, Philip Z Loh, Sasha Sproch
 Computer Architecture, Olin College Fall 2012 */
 
-`import "gateConstants.v"
-`import "mux5by1.v"
+`include "gateConstants.v"
+`include "mux5by1.v"
 
 module MegaMuxOfDestiny(out, ctl, I4, I3, I2, I1, I0);
   output [31:0] out;

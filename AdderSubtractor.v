@@ -97,7 +97,7 @@ module add32(out, Cout, A, B, Cin);
   input [31:0] A, B;
   input Cin;
   
-  wire [30:0] Ctemp;
+  wire [31:0] Ctemp;
   
   // 32-bit full adder
   add1 add1_0(out[0], Ctemp[0], A[0], B[0], Cin);
