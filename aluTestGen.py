@@ -104,27 +104,27 @@ def genCaseFor(a, b):
 		if not sENUM[s][1] == " MUL ":
 			op, comment = sENUM[s]
 			print("// %i%s%i" % (a.int, comment, b.int))
-			print "S = 'b%s;" % BitArray('uint:3=%s'%s).bin
-			print "A = 'b%s;" % a.bin
-			print "B = 'b%s;" % b.bin
-			print "`CLK;"
+			print("S = 'b%s;" % BitArray('uint:3=%s'%s).bin)
+			print("A = 'b%s;" % a.bin)
+			print("B = 'b%s;" % b.bin)
+			print("`CLK;")
 			out, zero, overflow, carryout = op(a,b)
 			if not out == None:
-				print "if (out !== 'b%s) begin" % out.bin
-				print "  `FAIL;"
-				print "end\n"
+				print ("if (out !== 'b%s) begin" % out.bin)
+				print ("  `FAIL;")
+				print ("end\n")
 			if not zero == None:
-				print "if (out !== 'b%s) begin" % zero.bin
-				print "  `FAIL;"
-				print "end\n"
+				print ("if (out !== 'b%s) begin" % zero.bin)
+				print ("  `FAIL;")
+				print ("end\n")
 			if not overflow == None:
-				print "if (out !== 'b%s) begin" % overflow.bin
-				print "  `FAIL;"
-				print "end\n"
+				print ("if (out !== 'b%s) begin" % overflow.bin)
+				print ("  `FAIL;")
+				print ("end\n")
 			if not carryout == None:
-				print "if (out !== 'b%s) begin" % carryout.bin
-				print "  `FAIL;"
-				print "end\n"
+				print ("if (out !== 'b%s) begin" % carryout.bin)
+				print ("  `FAIL;")
+				print ("end\n")
 
 testCases = [BitArray(bin=('0'*32)), BitArray(bin=('1'*32)), BitArray(bin=('01'*16)), BitArray(bin=('10'*16)),  BitArray(bin=(('0'*31)+'1'))]
 for a in testCases:
