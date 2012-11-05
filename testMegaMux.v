@@ -30,9 +30,7 @@ module testMegaMux();
     I5 = 2**5;
     I6 = 2**6;
     I7 = 2**7;
-  end
 
-  initial begin
     /* # PYTHON GENERATOR
     for s in range(8):
       print "S = '%s;" % bin(s)[1:]
