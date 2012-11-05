@@ -14,7 +14,7 @@ input control ctl1 is 1 if right shift, 0 if left shift
 worst-case delay = 7 * delay of MUX32LAYRES2BY1 = 7 * 50 = 350 */
 
 `include "gateConstants.v"
-`include "MUX32LAYERS2BY1.v"
+`include "mux32layersby1.v"
 
 module Shifter(out, A, B, ctl0, ctl1);
   output [31:0] out;
@@ -78,28 +78,28 @@ module Shifter(out, A, B, ctl0, ctl1);
   assign Aleftflipped[30] = A[1];
   assign Aleftflipped[31] = A[0];
 
-  // MUX32LAYERS2BY1 to left/right flip A or not left/right flip A based on ctl1 -> Apre0
-  MUX32LAYERS2BY1 muxInit(Apre0, ctl1, Aleftflipped, A);
+  // mux32layersby1 to left/right flip A or not left/right flip A based on ctl1 -> Apre0
+  mux32layersby1 muxInit(Apre0, ctl1, Aleftflipped, A);
 
   // FROM THIS POINT ON ALWAYS SHIFT RIGHT
   // extra bits not sign-extended (1: logical shift) or sign-extended (0: arithmetic shift)
   mux2by1 muxPre0(Apre0ext, ctl0, {low, A[31]});
-  // MUX32LAYERS2BY1 to shift Apre0 by 1 based on B[0] -> Apre1
-  MUX32LAYERS2BY1 mux0(Apre1, B[0], Apre0, {Apre0ext, Apre0[31:1]});
+  // mux32layersby1 to shift Apre0 by 1 based on B[0] -> Apre1
+  mux32layersby1 mux0(Apre1, B[0], Apre0, {Apre0ext, Apre0[31:1]});
 
   // extra bits not sign-extended (1: logical shift) or sign-extended (0: arithmetic shift)
   mux2by1 muxPre1a(Apre1ext[0], ctl0, {low, A[31]});
   mux2by1 muxPre1b(Apre1ext[1], ctl0, {low, A[31]});
-  // MUX32LAYERS2BY1 to shift Apre1 by 2 based on B[1] -> Apre2
-  MUX32LAYERS2BY1 mux1(Apre2, B[1], Apre1, {Apre1ext[1:0], Apre1[31:2]});
+  // mux32layersby1 to shift Apre1 by 2 based on B[1] -> Apre2
+  mux32layersby1 mux1(Apre2, B[1], Apre1, {Apre1ext[1:0], Apre1[31:2]});
 
   // extra bits not sign-extended (1: logical shift) or sign-extended (0: arithmetic shift)
   mux2by1 muxPre2a(Apre2ext[0], ctl0, {low, A[31]});
   mux2by1 muxPre2b(Apre2ext[1], ctl0, {low, A[31]});
   mux2by1 muxPre2c(Apre2ext[2], ctl0, {low, A[31]});
   mux2by1 muxPre2d(Apre2ext[3], ctl0, {low, A[31]});
-  // MUX32LAYERS2BY1 to shift Apre2 by 4 based on B[2] -> Apre3
-  MUX32LAYERS2BY1 mux2(Apre3, B[2], Apre2, {Apre2ext[3:0], Apre2[31:4]});
+  // mux32layersby1 to shift Apre2 by 4 based on B[2] -> Apre3
+  mux32layersby1 mux2(Apre3, B[2], Apre2, {Apre2ext[3:0], Apre2[31:4]});
 
   // extra bits not sign-extended (1: logical shift) or sign-extended (0: arithmetic shift)
   mux2by1 muxPre3a(Apre3ext[0], ctl0, {low, A[31]});
@@ -110,8 +110,8 @@ module Shifter(out, A, B, ctl0, ctl1);
   mux2by1 muxPre3f(Apre3ext[5], ctl0, {low, A[31]});
   mux2by1 muxPre3g(Apre3ext[6], ctl0, {low, A[31]});
   mux2by1 muxPre3h(Apre3ext[7], ctl0, {low, A[31]});
-  // MUX32LAYERS2BY1 to shift Apre3 by 8 based on B[3] -> Apre4
-  MUX32LAYERS2BY1 mux3(Apre4, B[3], Apre3, {Apre3ext[7:0], Apre3[31:8]});
+  // mux32layersby1 to shift Apre3 by 8 based on B[3] -> Apre4
+  mux32layersby1 mux3(Apre4, B[3], Apre3, {Apre3ext[7:0], Apre3[31:8]});
 
   // extra bits not sign-extended (1: logical shift) or sign-extended (0: arithmetic shift)
   mux2by1 muxPre4a(Apre4ext[0], ctl0, {low, A[31]});
@@ -130,8 +130,8 @@ module Shifter(out, A, B, ctl0, ctl1);
   mux2by1 muxPre4n(Apre4ext[13], ctl0, {low, A[31]});
   mux2by1 muxPre4o(Apre4ext[14], ctl0, {low, A[31]});
   mux2by1 muxPre4p(Apre4ext[15], ctl0, {low, A[31]});
-  // MUX32LAYERS2BY1 to shift Apre4 by 16 based on B[4] -> Apreout
-  MUX32LAYERS2BY1 mux4(Apreout, B[4], Apre4, {Apre4ext[15:0], Apre4[31:16]});
+  // mux32layersby1 to shift Apre4 by 16 based on B[4] -> Apreout
+  mux32layersby1 mux4(Apreout, B[4], Apre4, {Apre4ext[15:0], Apre4[31:16]});
 
   // left-right flip Apreout
   assign Apreoutleftflipped[0] = Apreout[31];
@@ -167,7 +167,7 @@ module Shifter(out, A, B, ctl0, ctl1);
   assign Apreoutleftflipped[30] = Apreout[1];
   assign Apreoutleftflipped[31] = Apreout[0];
 
-  // MUX32LAYERS2BY1 to left/right flip Apreout or not left/right flip Apreout based on ctl1 -> out
-  MUX32LAYERS2BY1 muxFinal(out, ctl1, Apreoutleftflipped, Apreout);
+  // mux32layersby1 to left/right flip Apreout or not left/right flip Apreout based on ctl1 -> out
+  mux32layersby1 muxFinal(out, ctl1, Apreoutleftflipped, Apreout);
 
 endmodule
