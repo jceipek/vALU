@@ -815,7 +815,6 @@ module testShifter();
       `FAIL;
     end
 
-
   end
 
 endmodule
